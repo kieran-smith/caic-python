@@ -153,10 +153,10 @@ class CaicClient:
 
         try:
             resp = await self.session.get(url, params=params)
-            if resp.status_code >= 400:
+            if resp.status >= 400:
                 error = await resp.text()
                 raise errors.CaicRequestException(
-                    f"Error status from CAIC: {resp.status_code} - {error}"
+                    f"Error status from CAIC: {resp.status} - {error}"
                 )
 
             data = await resp.json()
